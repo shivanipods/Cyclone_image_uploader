@@ -1,0 +1,32 @@
+{{extend 'layout.html'}}
+
+
+<h1>{{=message}}</h1>
+<h2>No of visits so far = {{=counter}}</h2>
+<h3>Access Our Current Images</h3>
+<ul>
+{{for image in images:}}
+{{=LI(A(image.title, _href=URL("show", args=image.id)))}}
+{{pass}}
+</ul></br>
+<style type="text/css">
+.my_content_container a {
+    border-bottom: 1px  #777777;
+    border-left: 1px  #000000;
+    border-right: 1px  #333333;
+    border-top: 1px  #000000;
+    color: blue;
+    display: block;
+    height: 4em;
+    padding: 0 1em;
+    width: 6em;       
+    text-decoration: none;    
+    background: #ddd;
+    display: inline;   
+}
+</style>
+
+<div class="my_content_container">
+     Or <a href="upload">Upload</a> a new image :)
+
+</div>

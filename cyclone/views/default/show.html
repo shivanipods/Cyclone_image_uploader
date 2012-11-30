@@ -1,0 +1,59 @@
+{{extend 'layout.html'}}
+<center>
+<h1>Image: {{=image.title}}</h1>
+
+<i >By {{=image.author}}</i>
+</center>
+</br>
+<center>
+<img width="600px"src="{{=URL('download', args=image.file)}}" />
+</center>
+<div align="center" class = "container">
+
+{{=form1}}
+ Likes so far {{=len(likey)}} 
+</br></br>
+<script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
+<g:plusone size="Standard (bubble)">Like Me!</g:plusone></br>
+<script type="text/javascript">
+   window.___gcfg = {
+    lang: 'en',
+    parsetags: 'onload'
+  };
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+<script type="text/javascript">
+      gapi.plusone.go("content");
+</script>
+<script type="text/javascript" src="https://apis.google.com/js/plusone.js">
+      {"parsetags": "explicit"}
+</script>
+<script type="text/javascript">
+      function renderPlusone() {
+        gapi.plusone.render("plusone-div");
+      }
+</script>
+<body>
+ <a href="#" onClick="renderPlusone();"></a>
+    <div id="plusone-div"></div>
+</body>
+</br>
+</div>
+{{if image.author == auth.user.first_name + ' '+auth.user.last_name:}}
+    {{=(A('Delete',_href = URL ("delete",args = image.id)))}}
+{{pass}}
+
+{{if len(comments):}}
+    <h2>Comments</h2><br /><p>
+    {{for comment in comments:}}
+        <p>{{=comment.author}} says <i>{{=comment.body}}</i></p>
+        {{pass}}</p>
+{{else:}}
+    <h2>No comments posted yet</h2>
+{{pass}}
+<h2>Post a comment</h2>
+{{=form}}
